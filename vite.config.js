@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import fs from 'fs';
 
 export default defineConfig({
     build: {
@@ -12,4 +13,18 @@ export default defineConfig({
             },
         },
     },
+    plugins: [
+        {
+            name: 'copy-images',
+            closeBundle() {
+                const srcDir = resolve(__dirname, 'Images');
+                const destDir = resolve(__dirname, 'dist', 'Images');
+                if (fs.existsSync(srcDir)) {
+                    // Creates the dist directory if needed, then copies Images/ inside
+                    fs.cpSync(srcDir, destDir, { recursive: true });
+                    console.log('✅ Copied Images directory to dist/Images for Vercel deployment!');
+                }
+            }
+        }
+    ]
 });
