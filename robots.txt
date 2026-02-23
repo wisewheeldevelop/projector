@@ -1,0 +1,26 @@
+# robots.txt for https://www.projectorlamp.co.il
+# Generated: 2026-02-23
+
+# Allow all crawlers full access
+User-agent: *
+Allow: /
+
+# Block technical & build directories
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /.git/
+Disallow: /Images/script.py
+
+# Crawl delay (optional, be kind to small servers)
+Crawl-delay: 1
+
+# Google-specific: allow all
+User-agent: Googlebot
+Allow: /
+
+# Bing-specific: allow all
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.projectorlamp.co.il/sitemap.xml

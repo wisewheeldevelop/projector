@@ -257,20 +257,22 @@
 
     <!-- Hero Section -->
     <header id="home"
-        class="relative pt-24 pb-32 md:pt-40 md:pb-40 overflow-hidden bg-brand-base min-h-[90vh] flex items-center">
+        class="relative pt-24 pb-16 md:pt-40 md:pb-40 overflow-hidden bg-brand-base min-h-[90vh] flex items-center">
         <!-- Background Elements -->
         <div class="absolute inset-0 z-0">
-            <img src="/Images/hero.avif" class="w-full h-full object-cover opacity-35 mix-blend-multiply"
-                alt="אלומת אור של מקרן קולנועי המדגימה עוצמת הארה של נורת מקרן מקורית">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(2,132,199,0.15)_0%,transparent_80%)]">
+            <!-- Desktop bg image: more visible -->
+            <img src="/Images/hero.avif" class="hidden md:block w-full h-full object-cover opacity-60"
+                alt="אלומת אור של מקרן קולנועי המדגימה עוצמת הארה של נורת מקרן מקורית" fetchpriority="high">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(2,132,199,0.12)_0%,transparent_70%)]">
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-base via-brand-base/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-base via-brand-base/50 to-brand-base/10"></div>
             <div class="projector-beam"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
             <div data-aos="fade-up"
-                class="inline-flex items-center gap-2 bg-brand-primary/10 border border-brand-primary/30 px-5 py-2 rounded-full backdrop-blur-sm mb-8 shadow-glow">
+                class="inline-flex items-center gap-2 bg-white/85 border border-brand-primary/30 px-5 py-2 rounded-full backdrop-blur-sm mb-8 shadow-glow">
                 <i data-lucide="star" class="w-4 h-4 text-brand-primary"></i>
                 <span class="text-sm font-bold text-brand-primary">המומחים לנורות מקרנים בישראל</span>
             </div>
@@ -308,6 +310,25 @@
             <p data-aos="fade-up" data-aos-delay="400" class="mt-6 text-sm text-brand-light/70">
                 * למקרנים מקצועיים מעל 5,000 לומנס – ניתן לקבל הצעת מחיר בטלפון.
             </p>
+
+            <!-- Mobile Hero Image Card (visible only on mobile) -->
+            <div data-aos="fade-up" data-aos-delay="500"
+                class="md:hidden mt-10 w-full max-w-sm mx-auto hero-mobile-img-card">
+                <div
+                    class="relative rounded-2xl overflow-hidden shadow-[0_8px_40px_-8px_rgba(2,132,199,0.45)] border border-brand-primary/20">
+                    <img src="/Images/hero.avif" class="w-full h-52 object-cover object-center"
+                        alt="אלומת אור מקרן – נורת מקרן מקורית באיכות גבוהה" loading="eager">
+                    <!-- subtle overlay gradient at bottom -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-base/70 via-transparent to-transparent">
+                    </div>
+                    <!-- badge on the image -->
+                    <div
+                        class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-brand-primary/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full shadow-glow whitespace-nowrap">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                        <span class="text-xs font-black tracking-wide">איכות מקורית • 6 חודשי אחריות</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -749,7 +770,7 @@
                         <div
                             class="relative rounded-2xl overflow-hidden img-wrapper shadow-premium border border-brand-dark/5 group bg-white">
                             <img src="/Images/light.png.avif"
-                                class="w-full object-contain max-h-[420px] group-hover:scale-105 transition-transform duration-700"
+                                class="w-full h-[420px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
                                 loading="lazy" width="800" height="600"
                                 alt="נורת מקרן מקורית ואיכותית – תאורה ברמה מקצועית">
                             <div class="absolute bottom-4 left-4 right-4 text-center pointer-events-none">
