@@ -215,7 +215,11 @@ textarea:focus {
     width: max-content;
     animation: marquee-scroll 45s linear infinite;
     will-change: transform;
+    /* הוספת האצת חומרה למניעת רעידות במובייל */
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    perspective: 1000px;
 }
 
 .marquee-wrapper:hover {
@@ -224,11 +228,11 @@ textarea:focus {
 
 @keyframes marquee-scroll {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
     100% {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
