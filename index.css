@@ -68,12 +68,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #0f766e;
+    background: #0284c7;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #115e59;
+    background: #0369a1;
 }
 
 /* Glassmorphism 2.0 */
@@ -94,8 +94,8 @@ body {
 
 .glass-card:hover {
     background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(15, 118, 110, 0.4);
-    box-shadow: 0 10px 40px -10px rgba(15, 118, 110, 0.2);
+    border-color: rgba(2, 132, 199, 0.4);
+    box-shadow: 0 10px 40px -10px rgba(2, 132, 199, 0.2);
     transform: translateY(-5px) scale(1.01);
 }
 
@@ -105,7 +105,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Projector Beam Effect - Amber/Gold */
+/* Projector Beam Effect */
 .projector-beam {
     position: absolute;
     top: -30%;
@@ -113,18 +113,18 @@ body {
     transform: translateX(-50%);
     width: 200vw;
     height: 200%;
-    background: conic-gradient(from 180deg at 50% 10%, rgba(15, 118, 110, 0.08) 0deg, transparent 40deg, transparent 320deg, rgba(15, 118, 110, 0.08) 360deg);
+    background: conic-gradient(from 180deg at 50% 10%, rgba(2, 132, 199, 0.08) 0deg, transparent 40deg, transparent 320deg, rgba(2, 132, 199, 0.08) 360deg);
     pointer-events: none;
     z-index: 1;
 }
 
 /* Glowing text */
 .text-glow {
-    text-shadow: 0 0 30px rgba(15, 118, 110, 0.3);
+    text-shadow: 0 0 30px rgba(2, 132, 199, 0.35);
 }
 
 .text-gradient-accent {
-    background: linear-gradient(135deg, #14b8a6 0%, #0f766e 50%, #115e59 100%);
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -199,7 +199,28 @@ input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #0f766e;
-    box-shadow: 0 0 0 1px #0f766e;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 1px #0284c7;
     background: rgba(255, 255, 255, 1);
+}
+
+/* Infinite Marquee */
+.marquee-wrapper {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 45s linear infinite;
+}
+
+.marquee-wrapper:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
