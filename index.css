@@ -1,0 +1,205 @@
+@import 'aos/dist/aos.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Heebo';
+    src: url('./fonts/heebo-v28-hebrew_latin-300.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heebo';
+    src: url('./fonts/heebo-v28-hebrew_latin-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heebo';
+    src: url('./fonts/heebo-v28-hebrew_latin-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heebo';
+    src: url('./fonts/heebo-v28-hebrew_latin-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heebo';
+    src: url('./fonts/heebo-v28-hebrew_latin-800.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Heebo';
+    src: url('./fonts/heebo-v28-hebrew_latin-900.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: #13171b;
+    color: #dadde6;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0f766e;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #115e59;
+}
+
+/* Glassmorphism 2.0 */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(15, 118, 110, 0.4);
+    box-shadow: 0 10px 40px -10px rgba(15, 118, 110, 0.2);
+    transform: translateY(-5px) scale(1.01);
+}
+
+.light-glass-card {
+    background: rgba(248, 250, 252, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Projector Beam Effect - Amber/Gold */
+.projector-beam {
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200vw;
+    height: 200%;
+    background: conic-gradient(from 180deg at 50% 10%, rgba(15, 118, 110, 0.08) 0deg, transparent 40deg, transparent 320deg, rgba(15, 118, 110, 0.08) 360deg);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Glowing text */
+.text-glow {
+    text-shadow: 0 0 30px rgba(15, 118, 110, 0.3);
+}
+
+.text-gradient-accent {
+    background: linear-gradient(135deg, #14b8a6 0%, #0f766e 50%, #115e59 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Image Hover Effect */
+.img-wrapper {
+    overflow: hidden;
+    border-radius: 1.5rem;
+}
+
+.img-wrapper img {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.group:hover .img-wrapper img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Accordion */
+.accordion-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-wrapper.open {
+    grid-template-rows: 1fr;
+}
+
+/* Accessibility */
+.acc-high-contrast {
+    filter: saturate(150%) contrast(120%);
+}
+
+.acc-grayscale {
+    filter: grayscale(100%);
+}
+
+.acc-readable-font * {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.acc-highlight-links a {
+    text-decoration: underline !important;
+    text-decoration-color: #0f766e !important;
+    text-decoration-thickness: 3px !important;
+    text-underline-offset: 4px !important;
+    font-weight: 800 !important;
+}
+
+.accordion-content {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-5px);
+}
+
+.accordion-wrapper.open .accordion-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Utility for LTR numbers */
+.dir-ltr {
+    direction: ltr;
+    display: inline-block;
+}
+
+/* Custom Inputs Focus */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #0f766e;
+    box-shadow: 0 0 0 1px #0f766e;
+    background: rgba(255, 255, 255, 1);
+}
