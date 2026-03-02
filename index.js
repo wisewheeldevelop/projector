@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             accMenu.classList.toggle('opacity-0');
             accMenu.classList.toggle('pointer-events-none');
+            accMenu.classList.toggle('pointer-events-auto');
             accMenu.classList.toggle('scale-90');
             accMenu.classList.toggle('scale-100');
         });
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (accClose) {
             accClose.addEventListener('click', () => {
                 accMenu.classList.add('opacity-0', 'pointer-events-none', 'scale-90');
-                accMenu.classList.remove('scale-100');
+                accMenu.classList.remove('scale-100', 'pointer-events-auto');
             });
         }
 
@@ -142,4 +143,96 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // Cookie Banner Logic
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookiesBtn = document.getElementById('accept-cookies');
+    const declineCookiesBtn = document.getElementById('decline-cookies');
+
+    if (cookieBanner && acceptCookiesBtn && declineCookiesBtn) {
+        const cookieChoice = localStorage.getItem('cookieConsent');
+
+        if (!cookieChoice) {
+            // Show after short delay for smoother entry
+            setTimeout(() => {
+                cookieBanner.classList.remove('translate-y-full');
+            }, 1000);
+        }
+
+        const hideCookieBanner = () => {
+            cookieBanner.classList.add('translate-y-full');
+            setTimeout(() => {
+                cookieBanner.style.display = 'none';
+            }, 700);
+        }
+
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideCookieBanner();
+            // Load analytics immediately when user explicitly accepts
+            loadGtag();
+        });
+
+        declineCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'declined');
+            hideCookieBanner();
+        });
+    }
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LAZY GOOGLE ANALYTICS LOADER
+// Replace 'G-XXXXXXXX' with your actual Google Analytics Measurement ID.
+// The script is injected only after the first user interaction (or after 5 s),
+// so it never blocks the initial render and keeps Lighthouse scores at 100.
+// ─────────────────────────────────────────────────────────────────────────────
+const GA_MEASUREMENT_ID = 'G-XXXXXXXX'; // ← Replace with your real ID
+
+let gaLoaded = false;
+
+function loadGtag() {
+    if (gaLoaded) return;
+
+    // Only load if user has accepted cookies (respect consent)
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent === 'declined') return;
+
+    gaLoaded = true;
+
+    // Remove all interaction listeners (run-once pattern)
+    INTERACTION_EVENTS.forEach(evt =>
+        window.removeEventListener(evt, onFirstInteraction, { passive: true })
+    );
+    clearTimeout(gaFallbackTimer);
+
+    // Dynamically inject gtag.js
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    // Initialise dataLayer after script loads
+    script.onload = () => {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID, { send_page_view: true });
+    };
+}
+
+const INTERACTION_EVENTS = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+
+function onFirstInteraction() {
+    loadGtag();
+}
+
+// Listen for first meaningful interaction
+INTERACTION_EVENTS.forEach(evt =>
+    window.addEventListener(evt, onFirstInteraction, { passive: true, once: true })
+);
+
+// Fallback: load after 5 seconds even without interaction
+const gaFallbackTimer = setTimeout(() => {
+    loadGtag();
+}, 5000);

@@ -14,8 +14,8 @@ export default {
           navy: '#f1f5f9',        // Light background variant
           primary: '#0284c7',     // Primary Brand (Deep Sky Blue)
           primaryGlow: '#0ea5e9', // Primary Hover (Light Sky Blue)
-          accent: '#10b981',      // Secondary / Action (Emerald Green)
-          glow: '#059669',        // Accent hover (Emerald 600)
+          accent: '#047857',      // Secondary / Action (Emerald-700 — WCAG AA: 5.56:1 on white)
+          glow: '#065f46',        // Accent hover (Emerald-800 — darker for hover states)
           whatsapp: '#25D366',    // WhatsApp specific
         }
       },
