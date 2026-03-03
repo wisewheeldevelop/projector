@@ -254,18 +254,29 @@ textarea:focus {
 }
 
 .hero-mobile-img-card>div {
+    position: relative;
     box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.15), 0 8px 40px -8px rgba(2, 132, 199, 0.4);
-    animation: hero-glow-pulse 3s ease-in-out infinite;
 }
 
-@keyframes hero-glow-pulse {
+.hero-mobile-img-card>div::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.3), 0 12px 50px -8px rgba(2, 132, 199, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    animation: hero-glow-pulse-opacity 3s ease-in-out infinite;
+}
+
+@keyframes hero-glow-pulse-opacity {
 
     0%,
     100% {
-        box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.15), 0 8px 40px -8px rgba(2, 132, 199, 0.4);
+        opacity: 0;
     }
 
     50% {
-        box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.3), 0 12px 50px -8px rgba(2, 132, 199, 0.6);
+        opacity: 1;
     }
 }

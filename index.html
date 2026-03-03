@@ -25,18 +25,37 @@
     <meta name="twitter:image"
         content="https://images.unsplash.com/photo-1540829016269-e05670f88adb?q=80&w=2070&auto=format&fit=crop">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QLPMBQWW"></script>
+    <!-- Google tag (gtag.js) - Deferred -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        const initGTM = () => {
+            if (window.gtmLoaded) return;
+            window.gtmLoaded = true;
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-95QLPMBQWW';
+            document.head.appendChild(script);
 
-        gtag('config', 'G-95QLPMBQWW');
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-95QLPMBQWW');
+
+            ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(e =>
+                window.removeEventListener(e, initGTM, { passive: true })
+            );
+        };
+
+        ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(e =>
+            window.addEventListener(e, initGTM, { passive: true })
+        );
     </script>
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.projectorlamp.co.il/">
+
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="/fonts/heebo-v28-hebrew_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/heebo-v28-hebrew_latin-900.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/index.css">
@@ -132,7 +151,7 @@
         <!-- Top Bar -->
         <div
             class="bg-brand-accent text-white text-center text-sm md:text-base font-bold py-2 tracking-wide border-b border-brand-accent/20 z-50 relative">
-            מחיר אחיד לרוב הדגמים: 790 ₪ כולל משלוח חינם! • 6 חודשי אחריות
+            מחיר אחיד לרוב הדגמים: 749 ₪ כולל משלוח חינם! • 6 חודשי אחריות
         </div>
 
         <!-- Navbar -->
@@ -330,8 +349,9 @@
                     class="md:hidden mt-10 w-full max-w-sm mx-auto hero-mobile-img-card">
                     <div
                         class="relative rounded-2xl overflow-hidden shadow-[0_8px_40px_-8px_rgba(2,132,199,0.45)] border border-brand-primary/20">
-                        <img src="/Images/hero.avif" class="w-full h-52 object-cover object-center"
-                            alt="אלומת אור מקרן – נורת מקרן מקורית באיכות גבוהה" loading="eager">
+                        <img src="/Images/hero.avif" srcset="/Images/hero-mobile.avif 800w, /Images/hero.avif 1536w"
+                            sizes="(max-width: 768px) 100vw, 50vw" class="w-full h-52 object-cover object-center"
+                            alt="אלומת אור מקרן – נורת מקרן מקורית באיכות גבוהה" fetchpriority="high" loading="eager">
                         <!-- subtle overlay gradient at bottom -->
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-brand-base/70 via-transparent to-transparent">
@@ -798,6 +818,8 @@
                                 <div
                                     class="relative rounded-2xl overflow-hidden img-wrapper shadow-premium border border-brand-dark/5 group bg-white">
                                     <img src="/Images/light.png.avif"
+                                        srcset="/Images/light-mobile.avif 800w, /Images/light.png.avif 1024w"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         class="w-full h-[420px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
                                         loading="lazy" width="800" height="600"
                                         alt="נורת מקרן מקורית ואיכותית – תאורה ברמה מקצועית">
@@ -1240,7 +1262,7 @@
                         class="flex flex-col md:flex-row justify-between items-center text-sm text-brand-light mt-8 gap-6">
                         <div class="flex flex-col gap-1 items-center md:items-start text-center md:text-right">
                             <p>© 2026 Project-OR (פרויקט אור). כל הזכויות שמורות.</p>
-                            <p class="font-bold text-brand-dark">עוצב ופותח על ידי NA AUTOMATE LTD | ח.פ 517202651</p>
+                            <p class="font-bold text-brand-dark">עוצב ופותח על ידי NA AUTOMATE LTD</p>
                         </div>
                         <div class="flex flex-wrap justify-center gap-4 md:gap-6 font-medium">
                             <a href="/terms.html"
